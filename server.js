@@ -12,11 +12,9 @@ function randomHash() {
     return shasum.digest('hex');
 }
 
-server.get('/', function (req, res) {
-    res.send('<h1>TicTacToe server</h1>');
-});
+server.use(express.static(__dirname + '/public'));
 
-server.post('/game/create', function (req, res) {
+server.post('/game/create', function(req, res) {
     id = randomHash();
     playerKey = randomHash();
     games[id] = {
@@ -26,17 +24,17 @@ server.post('/game/create', function (req, res) {
         winner  : 0,
         next    : 1
     };
-    res.send({ 'id': id, 'key': playerKey });
+    res.json({ 'id': id, 'key': playerKey });
 });
 
-server.put('/game/:id/join', function (req, res) {
+server.put('/game/:id/join', function(req, res) {
     game = games[req.param.id];
     if (game) {
         playerKey = randomHash();
         game.players.push(playerKey);
-        res.send({ 'key': playerKey, 'success': true });
+        res.json({ 'key': playerKey, 'success': true });
     } else {
-        res.send({ 'success': false });
+        res.json({ 'success': false });
     }
 });
 
