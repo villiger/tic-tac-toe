@@ -6,7 +6,7 @@ var server = express.createServer();
 var games = {};
 
 function randomHash() {
-    value = new Date().getTime();
+    value = new Date().getTime().toString();
     shasum = crypto.createHash('sha1');
     shasum.update(value);
     return shasum.digest('hex');
@@ -40,5 +40,5 @@ server.put('/game/:id/join', function (req, res) {
     }
 });
 
-server.listen(1337);
+server.listen(port, "62.75.242.85");
 console.log('Server is listening on port ' + port);
