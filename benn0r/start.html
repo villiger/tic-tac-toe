@@ -1,0 +1,27 @@
+<html>
+<head>
+<style type="text/css">
+td {
+	width: 50px;
+	text-align: center;
+	height: 50px;
+}
+</style>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('input[type=button]').click(function() {
+		$.get('index.php?action=join&lobby=' + $('input[type=text]').val(), function(result) {
+			symbol = result.replace('symbol ', '');
+			document.location.href = 'client.php?symbol=' + symbol;
+		});
+	});
+});
+</script>
+</head>
+<body>
+	<form action="" method="post">
+		Lobby: <input type="text" name="lobby" /><input type="button" value="Los" />
+	</form>
+</body>
+</html>
