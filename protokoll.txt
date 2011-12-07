@@ -1,0 +1,43 @@
+TicTacToe-Protokoll
+===================
+
+
+Neues Spiel erstellen
+---------------------
+METHOD:
+	POST /game/create
+REPONSE:
+	id		: random sha1 hash
+	key		: player 1 key als random sha1 hash
+
+
+Einem Spiel beitreten
+---------------------
+METHOD:
+	PUT /game/:id/join
+RESPONSE:
+	key		: player 2 key als random sha1 hash
+
+
+State des Spiels holen
+----------------------
+METHOD:
+	GET /game/:id
+RESPONSE:
+	state	: array mit dem spielfeld, bspw: [0, 0, 1, 1, 2, 0, 0, 2, 0]
+			  darin steht 0 für ein ungespieltes feld, 1 und 2 für player 1 resp. player 2
+	winner	: 0, 1 oder 2
+	next	: 0, 1 oder 2
+
+
+Spielzug spielen
+----------------
+METHOD:
+	PUT /game/:id/move/:position/player/:key
+RESPONSE:
+	state	: array mit dem spielfeld, bspw: [0, 0, 1, 1, 2, 0, 0, 2, 0]
+			  darin steht 0 für ein ungespieltes feld, 1 und 2 für player 1 resp. player 2
+	winner	: 0, 1 oder 2
+	next	: 0, 1 oder 2
+	success	: true oder false
+	
