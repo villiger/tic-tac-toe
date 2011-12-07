@@ -8,6 +8,24 @@
 </head>
 <body>
 	<h1>Tic-Tac-Toe</h1>
-	<p>Welcome on the Tic-Tac-Toe server!</p>
+	<h2>Game list</h2>
+	<ul id="game-list"></ul>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		setInterval(function() {
+			$.getJSON('/game', function(data) {
+				var list = $('ul#game-list');
+				list.html('');
+				$.each(data, function(index, game) {
+					list.append('<li>'+game.id+'</li>');
+				});
+			});
+		}, 1000);
+		
+		$('ul#game-list li').live('click', function() {
+			alert($(this).html());
+		});
+	});
+	</script>
 </body>
 </html>
