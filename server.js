@@ -28,7 +28,7 @@ server.post('/game/create', function(req, res) {
 });
 
 server.put('/game/:id/join', function(req, res) {
-    game = games[req.param.id];
+    game = games[req.params.id];
     if (game) {
         playerKey = randomHash();
         game.players.push(playerKey);
