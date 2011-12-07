@@ -44,7 +44,7 @@ require('http').createServer(function (request, response) {
 }).listen(1337);
 
 function randomHash() {
-    value = Math.random();
+    value = new Date().getTime();
     shasum = crypto.createHash('sha1');
     shasum.update(value);
     return shasum.digest('hex');
