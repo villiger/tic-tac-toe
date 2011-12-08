@@ -64,7 +64,7 @@ server.put('/game/:id/join', function(req, res) {
     if (game) {
         player1 = randomHash();
         game.players.push(player1);
-        game.next = Math.random() % 2; // random select first player (0 or 1)
+        game.next = Math.floor(Math.random()) % 2; // random select first player (0 or 1)
         res.json({
             'id'        : id,
             'player'    : player0
